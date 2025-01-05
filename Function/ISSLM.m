@@ -33,8 +33,9 @@ MSI_Patchs = Unfold(preconstruc_blocks,size(preconstruc_blocks),4);
 %% Group HSI by divide sub-bands
 fprintf('\nI am currently studying spectral information.\n');
 RM = corrcoef(LR_HSI');
-bandsIndex = ExtractBandIndex(RM,L); 
-interval = 2;
+bandsIndex = ExtraBandIndex3(RM,L); 
+% interval = 2;
+interval=size(bandsIndex,2);
 %% initial value
 LR_HSI3D = hyperConvert3D(LR_HSI, M / sf, N /sf, L);
 HR_load1  =   imresize(LR_HSI3D, sf,'bicubic');
@@ -63,7 +64,7 @@ for i = 1:par.Iter2
     rmse2(i)=getrmse(double(im2uint8(ImgOri)),double(im2uint8(Zt))); 
     disp(rmse2(i));
     for  j  =  1 : L
-        filename = ['E:\MyCode2\Lib\',num2str(j),'.mat'];
+        filename = ['G:\paper_code\Lib\',num2str(j),'.mat'];
         file = load(filename);
         Mi = file.ARM;
         MZ = Mi * DA(j,:)';

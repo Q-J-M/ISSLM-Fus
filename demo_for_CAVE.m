@@ -20,7 +20,7 @@ par.lambda1    =   0.015;% NonLocal-Autoregression item coefficients (*)
 par.lambda2    =   0.0008;% Local-Autoregression item coefficients (*)
 par.eta1       =   0.01;
 par.ro         =   1.1;
-par.Iter2       =    20;
+par.Iter2       =    25;
 par.c2         =    1;
 % low-dimension
 R = create_F();
@@ -53,7 +53,7 @@ HR_load1 = imresize(LR_HSI3D, sf,'bicubic');
 % Auto-regression Matrix learning
 for i = 1 : L
   ARM           =    Compute_AR_Matrix(HR_load1(:,:,i),AR_D,centroids,par);
-  filename = ['E:\MyCode2\Lib\',num2str(i),'.mat'];
+  filename = ['G:\paper_code\Lib\',num2str(i),'.mat'];
   save(filename,'ARM');
 end
 %% NonLocal Auto-regression Matrix learning
